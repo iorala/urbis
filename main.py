@@ -5,9 +5,11 @@ from collections import defaultdict
 
 app = Flask("urbis")
 
+
 @app.route('/')
 def home():
     return render_template("index.html")
+
 
 # run app (debug mode)
 if __name__ == "__main__":

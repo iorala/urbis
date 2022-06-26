@@ -9,6 +9,8 @@ app = Flask("urbis")
 
 @app.route('/')
 def home():
+    ## show a menu of funtions
+    #
     return render_template("index.html")
 
 

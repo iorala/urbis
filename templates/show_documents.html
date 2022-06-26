@@ -2,8 +2,8 @@
 
 <h1>{{ title }}</h1>
 	<ul>
-	{% for num,doc in enumerate(corpus.find({"corpus_name": corpus_name })) %}
-		<li>Document #{{num}} - <em>{{ dok['content'].strip().splitlines()[0]}}</em> - <a href="{{url_for('view_document', document_id=doc['id'], corpus_name=corpus_name)}}">View Document</a></li>
+	{% for doc in document.find({"corpus_name": corpus_name }) %}
+		<li><a href="{{url_for('view_document', document_id=doc['id'], document_no=loop.index , corpus_name=corpus_name)}}">Document #{{loop.index}} </a>- <em>{{ doc['content'].strip().splitlines()[0]}}</em> </li>
 	{% endfor %}
 	</ul>
 

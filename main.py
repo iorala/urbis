@@ -42,12 +42,13 @@ def show_documents(corpus_name):
     return render_template("show_documents.html", corpus_name=corpus_name, document=document, title=f"Documents in Corpus {corpus_name}")
 
 
-@app.route('/document_view')
-def document_view():
+@app.route('/view_document/<corpus_name>/<document_no>/<document_id>')
+def view_document(corpus_name,document_id,document_no):
     # read the document contents of the selected document
     # display the content
     # navigation: back/prev-doc/next-doc
-    return render_template("document_view.html")
+    document_content = document.find_one({"id": document_id})
+    return render_template("view_document.html", document_no=document_no, document_content=document_content, corpus_name=corpus_name, document=document, document_id=document_id, title=f"View Document #{document_no}")
 
 
 @app.route('/show_annotations')

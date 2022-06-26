@@ -4,6 +4,7 @@ from flask import request
 from collections import defaultdict
 from pymongo import MongoClient
 import pprint
+from bson import ObjectId
 client = MongoClient()
 db = client.orbis
 corpus = db.corpus

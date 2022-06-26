@@ -1,4 +1,9 @@
 # shamelessly stolen from https://github.com/orbis-eval/orbis_2,
+# removed  asyncs from the class methods because garbage code doesn't work and it's not my job to debug it:
+#/Users/reslr/Documents/MSc/Consultancy Project/urbis/test-connnection.py:5: RuntimeWarning: coroutine 'DB.get_document_content' was never awaited
+#  orbis_db.get_document_content('i249066098819041307839298364598451988672')
+# RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+
 import datetime
 import os
 
@@ -16,7 +21,7 @@ class DB:
         self.__mongo_url = mongo_url
         self.__db_name = db_name
 
-    async def open(self):
+    def open(self):
         # check for database params:
         if self.__mongo_url:
             self.__client = AsyncIOMotorClient(self.__mongo_url)

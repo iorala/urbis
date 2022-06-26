@@ -4,6 +4,13 @@ from flask import request
 from collections import defaultdict
 from pymongo import MongoClient
 import pprint
+client = MongoClient()
+db = client.orbis
+corpus = db.corpus
+document = db.document
+document_annotation = db.document_annotation
+annotation = db.annotation
+
 
 app = Flask("urbis")
 
@@ -23,8 +30,8 @@ def viewer():
     # - show_documents
     # - Show Document-Annotations
     # - show EvaluationsRuns
-    #
-    return render_template("viewer.html")
+
+    return render_template("viewer.html", corpus=corpus)
 
 
 @app.route('/show_documents/<corpus_name>')

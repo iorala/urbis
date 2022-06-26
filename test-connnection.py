@@ -18,8 +18,8 @@ for doc in corpus.find():
 all_corpora = corpus.find()
 print(all_corpora)
 
-#for doc in document.find({"corpus_name": "education_extraction_corpus"}):
- #   pprint.pprint(doc)
+for doc in document.find({"corpus_sname": "education_extraction_corpus"}):
+    pprint.pprint(doc)
 
 #for doc in annotation.find():
 #    pprint.pprint(doc)

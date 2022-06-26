@@ -1,8 +1,9 @@
 {% include "header.html" %}
+
+<h1>{{ title }}</h1>
 	<ul>
-        <h1>List of Corpora</h1>
-	{% for doc in corpus.find() %}
-		<li>{{ doc["corpus_name"]}} - {{doc["description"]}} - <a href="{{url_for('show_documents', corpus_name=doc['corpus_name'])}}">View Documents</a></li>
+	{% for num,doc in enumerate(corpus.find({"corpus_name": corpus_name })) %}
+		<li>Document #{{num}} - <em>{{ dok['content'].strip().splitlines()[0]}}</em> - <a href="{{url_for('view_document', document_id=doc['id'], corpus_name=corpus_name)}}">View Document</a></li>
 	{% endfor %}
 	</ul>
 

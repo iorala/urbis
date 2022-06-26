@@ -2,7 +2,7 @@
 	<ul>
         <h1>List of Corpora</h1>
 	{% for doc in corpus.find() %}
-		<li>{{ doc["corpus_name"]}} - {{doc["description"]}} - <a href="{{url_for('show_documents', corpus_name=doc['corpus_name'])}}">View Documents</a></li>
+		<li>{{ doc["corpus_name"]}} - {{doc["description"]}} - <a href="{{url_for('show_documents', corpus_name=doc['corpus_name'])}}">Show Documents</a></li>
 	{% endfor %}
 	</ul>
 

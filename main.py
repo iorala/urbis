@@ -39,7 +39,7 @@ def show_documents(corpus_name):
     # Read the list of documents from the selected corpus
     # Display all the documents
     # let user select a document
-    return render_template("show_documents.html", title=f"Documents in Corpus {corpus_name}")
+    return render_template("show_documents.html", corpus_name=corpus_name, document=document, title=f"Documents in Corpus {corpus_name}")
 
 
 @app.route('/document_view')

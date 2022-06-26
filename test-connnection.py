@@ -11,11 +11,15 @@ corpus = db.corpus
 document = db.document
 document_annotation = db.document_annotation
 annotation = db.annotation
+all_corpora = []
 for doc in corpus.find():
     pprint.pprint(doc)
+
+all_corpora = corpus.find()
+print(all_corpora)
 
 #for doc in document.find({"corpus_name": "education_extraction_corpus"}):
  #   pprint.pprint(doc)
 
-for doc in annotation.find():
-    pprint.pprint(doc)
+#for doc in annotation.find():
+#    pprint.pprint(doc)

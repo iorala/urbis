@@ -1,8 +1,22 @@
 {% include "header.html" %}
 <a href="{{url_for('show_documents', corpus_name=corpus_name)}}">Back to annotation list for Document #{{ document_no }}</a>
 <h1>{{ title }}</h1>
+<h2>Tagged Document</h2>
+<pre>{{ output | safe }}</pre>
+<h2>List of Tags</h2>
+
+<ol class="list-group list-group-numbered">
+    {% for anot in anot_tuples %}
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold anot">{{anot[3]}}</div>
+      {{anot[2]}} - {{anot[4]}}
+    </div>
+    <span class="badge bg-primary rounded-pill">{{anot[0]}}-{{anot[1]}}</span>
+  </li>
+    {% endfor %}
+</ol>
 
 
 
-<pre>{{ document_content['content']}}</pre>
 {% include "footer.html" %}

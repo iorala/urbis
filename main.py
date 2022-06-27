@@ -48,7 +48,9 @@ def view_document(corpus_name,document_id,document_no):
     # read the document contents of the selected document
     # display the content
     # navigation: back/prev-doc/next-doc
-    document_content = document.find_one({"id": document_id})
+    document_content = document.find_one({"id": document_id})['content']
+    document_content = document_content.replace("\n\n", "\n")
+    document_content = document_content.replace("\n\n", "\n")
     return render_template("view_document.html", document_no=document_no, document_content=document_content, corpus_name=corpus_name, document=document, document_id=document_id, title=f"Urbis - View Document #{document_no}")
 
 
@@ -65,7 +67,31 @@ def view_annotation(corpus_name,document_id,document_no,annotation_id):
     # read the contents of the selected annotation
     # display the content
     # navigation: back/prev-doc/next-doc
-    return render_template("view_annotation.html", annotation_id=annotation_id, document_no=document_no, corpus_name=corpus_name, document=document, document_id=document_id, title=f"Urbis - View Annotation #{annotation_id}")
+    start_tag = "<div class='anot'>"
+    end_tag = "</div>"
+    document_content = document.find_one({"id": document_id})['content']
+
+    for doc in annotation.find({'_id': ObjectId(annotation_id)}):
+        doc_annotations = doc['annotations']
+
+    anot_tuples = []
+    for anot in doc_annotations['annotations']:
+        anot_tuples.append((anot['start'], anot['end'], anot['type'], anot['surface_form'], anot['key']))
+
+    output = ""
+    start_char = 0
+    anot_tuples = sorted(anot_tuples)
+    for anot in anot_tuples:
+        output += document_content[start_char:anot[0]]
+        output += start_tag
+        output += document_content[anot[0]:anot[1]]
+        output += end_tag
+        start_char = anot[1]
+    output = output.replace("\n\n", "\n")
+    output = output.replace("\n\n", "\n")
+    output = output.replace("\n", "<br>")
+
+    return render_template("view_annotation.html", anot_tuples=anot_tuples, output=output, annotation_id=annotation_id, document_no=document_no, corpus_name=corpus_name, document=document, document_id=document_id, title=f"Urbis - View Annotation #{annotation_id}")
 
 # run app (debug mode)
 if __name__ == "__main__":

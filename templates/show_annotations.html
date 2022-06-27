@@ -1,11 +1,9 @@
 {% include "header.html" %}
 
 <h1>{{ title }}</h1>
-<h2>{{ document_id }}</h2>
 	<ul>
 	{% for doc in annotation.find({'annotations.d_id': document_id}) %}
-
-		<li>{{ doc['_id'] }}</li>
+		<li><a href="{{url_for('view_annotation', document_id=document_id, document_no=document_no , corpus_name=corpus_name, annotation_id=doc['_id'])}}">Annotation #{{doc['_id']}} </a>- Created: {{ doc['annotations']['meta']['creation_date']}}
 	{% endfor %}
 	</ul>
 

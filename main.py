@@ -60,12 +60,12 @@ def show_annotations(corpus_name,document_id,document_no):
 
     return render_template("show_annotations.html",document_id=document_id, document_no=document_no, corpus_name=corpus_name, annotation=annotation, title=f"Urbis - Show Annotations for Document #{document_no}")
 
-@app.route('/annotation_view')
-def annotation_view():
-    # read the contents of the slected annotation
+@app.route('/view_annotation/<corpus_name>/<document_no>/<document_id>/<annotation_id>')
+def view_annotation(corpus_name,document_id,document_no,annotation_id):
+    # read the contents of the selected annotation
     # display the content
     # navigation: back/prev-doc/next-doc
-    return render_template("annotation_view.html")
+    return render_template("view_annotation.html", annotation_id=annotation_id, document_no=document_no, corpus_name=corpus_name, document=document, document_id=document_id, title=f"Urbis - View Annotation #{annotation_id}")
 
 # run app (debug mode)
 if __name__ == "__main__":

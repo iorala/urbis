@@ -51,6 +51,7 @@ def view_document(corpus_name,document_id,document_no):
     document_content = document.find_one({"id": document_id})['content']
     document_content = document_content.replace("\n\n", "\n")
     document_content = document_content.replace("\n\n", "\n")
+    document_content = document_content.replace("\n", "<br>")
     return render_template("view_document.html", document_no=document_no, document_content=document_content, corpus_name=corpus_name, document=document, document_id=document_id, title=f"Urbis - View Document #{document_no}")
 
 

@@ -32,7 +32,7 @@ def viewer():
     # - Show Document-Annotations
     # - show EvaluationsRuns
 
-    return render_template("viewer.html", corpus=corpus)
+    return render_template("viewer.html", corpus=corpus, title="Urbis - Document Viewer")
 
 
 @app.route('/show_documents/<corpus_name>')
@@ -40,7 +40,7 @@ def show_documents(corpus_name):
     # Read the list of documents from the selected corpus
     # Display all the documents
     # let user select a document
-    return render_template("show_documents.html", corpus_name=corpus_name, document=document, title=f"Documents in Corpus {corpus_name}")
+    return render_template("show_documents.html", corpus_name=corpus_name, document=document, title=f"Urbis - Documents in Corpus {corpus_name}")
 
 
 @app.route('/view_document/<corpus_name>/<document_no>/<document_id>')
@@ -49,15 +49,16 @@ def view_document(corpus_name,document_id,document_no):
     # display the content
     # navigation: back/prev-doc/next-doc
     document_content = document.find_one({"id": document_id})
-    return render_template("view_document.html", document_no=document_no, document_content=document_content, corpus_name=corpus_name, document=document, document_id=document_id, title=f"View Document #{document_no}")
+    return render_template("view_document.html", document_no=document_no, document_content=document_content, corpus_name=corpus_name, document=document, document_id=document_id, title=f"Urbis - View Document #{document_no}")
 
 
-@app.route('/show_annotations')
-def show_annotations():
-    # Read the list of annotations from the selected corpus
+@app.route('/show_annotations/<corpus_name>/<document_no>/<document_id>')
+def show_annotations(corpus_name,document_id,document_no):
+    # Read the list of annotations for the selected Documents
     # Display all the documents
     # let user select a document
-    return render_template("show_annotations.html")
+
+    return render_template("show_annotations.html",document_id=document_id, document_no=document_no, corpus_name=corpus_name, annotation=annotation, title=f"Urbis - Show Annotations for Document #{document_no}")
 
 @app.route('/annotation_view')
 def annotation_view():

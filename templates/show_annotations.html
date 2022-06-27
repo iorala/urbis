@@ -1,0 +1,12 @@
+{% include "header.html" %}
+
+<h1>{{ title }}</h1>
+<h2>{{ document_id }}</h2>
+	<ul>
+	{% for doc in annotation.find({'annotations.d_id': document_id}) %}
+
+		<li>{{ doc['_id'] }}</li>
+	{% endfor %}
+	</ul>
+
+{% include "footer.html" %}

@@ -27,7 +27,7 @@ def viewer():
     # - Show Document-Annotations
     # - show EvaluationsRuns
 
-    return render_template("viewer.html", corpus=corpus, title="Urbis - Document Viewer")
+    return render_template("viewer.html", corpus=corpus, title="Document Viewer")
 
 
 @app.route('/show_documents/<corpus_name>')
@@ -35,7 +35,7 @@ def show_documents(corpus_name):
     # Read the list of documents from the selected corpus
     # Display all the documents
     # let user select a document
-    return render_template("show_documents.html", corpus_name=corpus_name, document=document, title=f"Urbis - Documents in Corpus {corpus_name}")
+    return render_template("show_documents.html", corpus_name=corpus_name, document=document, title=f"Documents in Corpus {corpus_name}")
 
 
 @app.route('/view_document/<corpus_name>/<document_no>/<document_id>')
@@ -47,7 +47,7 @@ def view_document(corpus_name,document_id,document_no):
     document_content = document_content.replace("\n\n", "\n")
     document_content = document_content.replace("\n\n", "\n")
     document_content = document_content.replace("\n", "<br>")
-    return render_template("view_document.html", document_no=document_no, document_content=document_content, corpus_name=corpus_name, document=document, document_id=document_id, title=f"Urbis - View Document #{document_no}")
+    return render_template("view_document.html", document_no=document_no, document_content=document_content, corpus_name=corpus_name, document=document, document_id=document_id, title=f"View Document #{document_no}")
 
 
 @app.route('/show_annotations/<corpus_name>/<document_no>/<document_id>')
@@ -56,7 +56,7 @@ def show_annotations(corpus_name,document_id,document_no):
     # Display all the documents
     # let user select a document
 
-    return render_template("show_annotations.html",document_id=document_id, document_no=document_no, corpus_name=corpus_name, annotation=annotation, title=f"Urbis - Show Annotations for Document #{document_no}")
+    return render_template("show_annotations.html",document_id=document_id, document_no=document_no, corpus_name=corpus_name, annotation=annotation, title=f"Show Annotations for Document #{document_no}")
 
 @app.route('/view_annotation/<corpus_name>/<document_no>/<document_id>/<annotation_id>')
 def view_annotation(corpus_name,document_id,document_no,annotation_id):
@@ -86,7 +86,7 @@ def view_annotation(corpus_name,document_id,document_no,annotation_id):
     output = output.replace("\n\n", "\n")
     output = output.replace("\n", "<br>")
 
-    return render_template("view_annotation.html", anot_tuples=anot_tuples, output=output, annotation_id=annotation_id, document_no=document_no, corpus_name=corpus_name, document=document, document_id=document_id, title=f"Urbis - View Annotation #{annotation_id}")
+    return render_template("view_annotation.html", anot_tuples=anot_tuples, output=output, annotation_id=annotation_id, document_no=document_no, corpus_name=corpus_name, document=document, document_id=document_id, title=f"View Annotation #{annotation_id}")
 
 # run app (debug mode)
 if __name__ == "__main__":

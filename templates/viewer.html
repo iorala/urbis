@@ -1,9 +1,27 @@
 {% include "header.html" %}
 	<ul>
         <h1>List of Corpora</h1>
-	{% for doc in corpus.find() %}
-		<li>{{ doc["corpus_name"]}} - {{doc["description"]}} - <a href="{{url_for('show_documents', corpus_name=doc['corpus_name'])}}">Show Documents</a></li>
-	{% endfor %}
-	</ul>
+	<div class="container">
 
+
+
+
+
+<div class="row">
+	{% for doc in corpus.find() %}
+
+
+	  <div class="col">
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ doc["corpus_name"]}}</h5>
+    <p class="card-text">{{doc["description"]}}</p>
+    <a href="{{url_for('show_documents', corpus_name=doc['corpus_name'])}}" class="btn btn-primary">Show Documents</a>
+  </div>
+</div>
+		  </div>
+
+		{% endfor %}
+		  </div>
+	  </div>
 {% include "footer.html" %}

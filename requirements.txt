@@ -1,0 +1,4 @@
+Flask
+Jinja2
+pymongo==3.12.0
+Werkzeug

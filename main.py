@@ -1,9 +1,6 @@
-from flask import Flask, redirect
+from flask import Flask
 from flask import render_template
-from flask import request
-from collections import defaultdict
 from pymongo import MongoClient
-import pprint
 from bson import ObjectId
 client = MongoClient()
 db = client.orbis
@@ -12,9 +9,7 @@ document = db.document
 document_annotation = db.document_annotation
 annotation = db.annotation
 
-
 app = Flask("urbis")
-
 
 @app.route('/')
 def home():

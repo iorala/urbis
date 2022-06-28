@@ -1,9 +1,11 @@
-h1 {
-
-}
-
 .anot {
     color: white;
     background-color: #0d6efd;
     display: inline;
+}
+
+.custom-tooltip {
+  --bs-tooltip-bg: var(--bs-primary);
+    text-wrap: word-break;
+    text-align: left;
 }

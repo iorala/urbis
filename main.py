@@ -68,8 +68,7 @@ def view_annotation(corpus_name,document_id,document_no,annotation_id):
     # read the contents of the selected annotation
     # display the content
     # navigation: back/prev-doc/next-doc
-    start_tag = "<div class='anot'>"
-    end_tag = "</div>"
+
     document_content = document.find_one({"id": document_id})['content']
 
     for doc in annotation.find({'_id': ObjectId(annotation_id)}):
@@ -84,9 +83,9 @@ def view_annotation(corpus_name,document_id,document_no,annotation_id):
     anot_tuples = sorted(anot_tuples)
     for anot in anot_tuples:
         output += document_content[start_char:anot[0]]
-        output += start_tag
+        output += f"<div class='anot' data-bs-toggle='tooltip' data-bs-placement='top' data-bs-custom-class='custom-tooltip text-wrap' style='--bs-tooltip-bg: var(--bs-primary);' title='{anot[4]}'>"
         output += document_content[anot[0]:anot[1]]
-        output += end_tag
+        output += "</div>"
         start_char = anot[1]
     output = output.replace("\n\n", "\n")
     output = output.replace("\n\n", "\n")
